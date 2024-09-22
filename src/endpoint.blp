@@ -1,0 +1,78 @@
+using Gtk 4.0;
+using Adw 1;
+using AstalWp 0.1;
+
+
+
+template $WirecontrolEndpoint: Gtk.ListBoxRow {
+  selectable: false;
+  activatable: false;
+  child: Gtk.Box {
+    margin-start: 10;
+    margin-end: 10;
+    margin-top: 10;
+    margin-bottom: 10;
+    orientation: vertical;
+
+    Gtk.CenterBox {
+      [start]
+      Gtk.Box {
+        spacing: 10;
+
+        Gtk.Box {
+          orientation: vertical;
+          Gtk.Label {
+            label: bind template.endpoint as <AstalWp.Endpoint>.description;
+            ellipsize: end;
+            styles ["heading"]
+          }
+          Gtk.Label {
+            label: bind template.endpoint as <AstalWp.Endpoint>.name;
+            ellipsize: end;
+            xalign: 0;
+            styles ["subtitle"]
+          }
+        }
+      }
+      [end]
+      Gtk.Box {
+        spacing: 5;
+        Gtk.ToggleButton mute_toggle {
+          child: Gtk.Image {
+            icon-name: "audio-volume-muted-symbolic";
+            tooltip-text: "mute";
+          };
+        }
+        Gtk.ToggleButton lock_toggle {
+          child: Gtk.Image {
+            icon-name: "system-lock-screen-symbolic";
+            tooltip-text: "lock channels";
+          };
+        }
+        Gtk.ToggleButton default_toggle {
+          visible: bind $default_toggle_visible(template.endpoint as <AstalWp.Endpoint>.media-class) as <bool>;
+          halign: end;
+          child: Gtk.Image {
+            icon-name: "object-select-symbolic";
+            tooltip-text: "set default";
+          };
+        }
+      }
+    }
+    Gtk.Box {
+      Gtk.Image {
+        icon-name: bind template.endpoint as <AstalWp.Endpoint>.volume-icon;
+      }
+      Gtk.Scale {
+        hexpand: true;
+        adjustment: Gtk.Adjustment volume_adjust {
+          lower: 0;
+          upper: 1;
+        };
+      }
+    }
+  };
+}
+
+
+

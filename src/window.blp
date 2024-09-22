@@ -1,0 +1,148 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WirecontrolWindow: Adw.ApplicationWindow {
+  title: _("WireControl");
+  width-request: 500;
+  height-request: 300;
+
+  Adw.Breakpoint {
+    condition ("max-width: 700sp")
+
+    setters {
+      switcher_title.policy: narrow;
+    }
+  }
+
+  content: Box {
+    orientation: vertical;
+
+    Adw.HeaderBar header_bar {
+      title-widget: Adw.ViewSwitcher switcher_title {
+        stack: stack;
+        policy: wide;
+      };
+
+      [end]
+      MenuButton primary {
+        halign: center;
+        icon-name: "open-menu-symbolic";
+        menu-model: primary_button_menu;
+        primary: true;
+      }
+    }
+
+    Adw.ViewStack stack {
+
+      Adw.ViewStackPage output {
+        name: "output";
+        title: _("Output Devices");
+        icon-name: "audio-card-symbolic";
+        use-underline: true;
+
+        child: Gtk.ScrolledWindow {
+          vexpand: true;
+
+          Gtk.ListBox output_list {
+            margin-start: 10;
+            margin-end: 10;
+            margin-top: 10;
+            margin-bottom: 10;
+            hexpand: true;
+            valign: start;
+            selection-mode: none;
+            show-separators: true;
+            styles ["boxed-list"]
+          }
+        };
+      }
+      Adw.ViewStackPage input {
+        name: "input";
+        title: _("Input Devices");
+        icon-name: "audio-card-symbolic";
+        use-underline: true;
+
+        child: Gtk.ScrolledWindow {
+          vexpand: true;
+
+          Gtk.ListBox input_list {
+            margin-start: 10;
+            margin-end: 10;
+            margin-top: 10;
+            margin-bottom: 10;
+            hexpand: true;
+            valign: start;
+            selection-mode: none;
+            show-separators: true;
+            styles ["boxed-list"]
+          }
+        };
+      }
+
+      Adw.ViewStackPage playback {
+        name: "playback";
+        title: _("Playback");
+        icon-name: "audio-speakers-symbolic";
+        use-underline: true;
+
+        child: Gtk.ScrolledWindow {
+          vexpand: true;
+
+          Gtk.ListBox playback_list {
+            margin-start: 10;
+            margin-end: 10;
+            margin-top: 10;
+            margin-bottom: 10;
+            hexpand: true;
+            valign: start;
+            selection-mode: none;
+            show-separators: true;
+            styles ["boxed-list"]
+          }
+        };
+      }
+
+      Adw.ViewStackPage record {
+        name: "record";
+        title: _("Recording");
+        icon-name: "audio-input-microphone-symbolic";
+        use-underline: true;
+
+        child: Gtk.ScrolledWindow {
+          vexpand: true;
+
+          Gtk.ListBox recorder_list {
+            margin-start: 10;
+            margin-end: 10;
+            margin-top: 10;
+            margin-bottom: 10;
+            hexpand: true;
+            valign: start;
+            selection-mode: none;
+            show-separators: true;
+            styles ["boxed-list"]
+          }
+        };
+      }
+    }
+  };
+
+
+}
+
+menu primary_button_menu {
+  section {
+    item {
+      label: _("Enable over-amplification");
+      action: "win.enable-overamplification";
+    }
+  }
+
+  section {
+
+    item {
+      label: _("About WireControl");
+      action: "app.about";
+    }
+  }
+}

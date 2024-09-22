@@ -1,0 +1,6 @@
+data/com.github.kotontrion.wirecontrol.desktop.in
+data/com.github.kotontrion.wirecontrol.metainfo.xml.in
+data/com.github.kotontrion.wirecontrol.gschema.xml
+src/main.vala
+src/window.vala
+src/window.ui
