@@ -1,8 +1,9 @@
 [Desktop Entry]
-Name=wirecontrol
+Name=WireControl
+Comment=Volume control center
 Exec=wirecontrol
 Icon=com.github.kotontrion.wirecontrol
 Terminal=false
 Type=Application
-Categories=GTK;
+Categories=AudioVideo;Audio;Mixer;GTK;Settings;
 StartupNotify=true
