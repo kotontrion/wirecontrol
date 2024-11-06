@@ -1,8 +1,5 @@
 using Gtk 4.0;
-using Adw 1;
 using AstalWp 0.1;
-
-
 
 template $WirecontrolEndpoint: Gtk.ListBoxRow {
   selectable: false;
@@ -24,6 +21,7 @@ template $WirecontrolEndpoint: Gtk.ListBoxRow {
           Gtk.Label {
             label: bind template.endpoint as <AstalWp.Endpoint>.description;
             ellipsize: end;
+            xalign: 0;
             styles ["heading"]
           }
           Gtk.Label {
@@ -40,13 +38,13 @@ template $WirecontrolEndpoint: Gtk.ListBoxRow {
         Gtk.ToggleButton mute_toggle {
           child: Gtk.Image {
             icon-name: "audio-volume-muted-symbolic";
-            tooltip-text: "mute";
+            tooltip-text: _("mute");
           };
         }
         Gtk.ToggleButton lock_toggle {
           child: Gtk.Image {
             icon-name: "system-lock-screen-symbolic";
-            tooltip-text: "lock channels";
+            tooltip-text: _("lock channels");
           };
         }
         Gtk.ToggleButton default_toggle {
@@ -54,7 +52,7 @@ template $WirecontrolEndpoint: Gtk.ListBoxRow {
           halign: end;
           child: Gtk.Image {
             icon-name: "object-select-symbolic";
-            tooltip-text: "set default";
+            tooltip-text: _("set default");
           };
         }
       }

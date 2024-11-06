@@ -6,6 +6,7 @@ wirecontrol_sources = [
 ]
 
 wirecontrol_deps = [
+  config_dep,
   dependency('gtk4'),
   dependency('libadwaita-1', version: '>= 1.4'),
   dependency('astal-wireplumber-0.1'),
@@ -29,5 +30,6 @@ wirecontrol_sources += gnome.compile_resources('wirecontrol-resources',
 
 executable('wirecontrol', wirecontrol_sources,
   dependencies: wirecontrol_deps,
-       install: true,
+  include_directories: config_inc,
+  install: true,
 )

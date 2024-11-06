@@ -24,17 +24,19 @@ namespace Wirecontrol {
 
         private void on_about_action () {
             string[] developers = { "kotontrion" };
-            var about = new Adw.AboutWindow () {
-                transient_for = this.active_window,
+            var about = new Adw.AboutDialog () {
                 application_name = "wirecontrol",
                 application_icon = "com.github.kotontrion.wirecontrol",
                 developer_name = "kotontrion",
                 version = "0.1.0",
                 developers = developers,
                 copyright = "© 2024 kotontrion",
+                issue_url = "https://github.com/kotontrion/wirecontrol/issues",
+                license_type = Gtk.License.GPL_3_0,
+
             };
 
-            about.present ();
+            about.present (this.active_window);
         }
     }
 }

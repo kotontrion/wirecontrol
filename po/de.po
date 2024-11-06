@@ -1,0 +1,67 @@
+# German translations for wirecontrol package.
+# Copyright (C) 2024 THE wirecontrol'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the wirecontrol package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wirecontrol\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-06 14:05+0100\n"
+"PO-Revision-Date: 2024-11-06 14:04+0100\n"
+"Last-Translator: kotontrion <kotontrion@tutanota.de>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: data/com.github.kotontrion.wirecontrol.desktop.in:3 src/window.blp:5
+msgid "WireControl"
+msgstr "WireControl"
+
+#: data/com.github.kotontrion.wirecontrol.desktop.in:4
+#: data/com.github.kotontrion.wirecontrol.metainfo.xml.in:7
+msgid "Volume control center"
+msgstr "Lautstärkeregler"
+
+#: src/endpoint.blp:44
+msgid "mute"
+msgstr "stummschalten"
+
+#: src/endpoint.blp:50
+msgid "lock channels"
+msgstr "Kanäle zusammen regeln"
+
+#: src/endpoint.blp:58
+msgid "set default"
+msgstr "als Standardgerät festlegen"
+
+#: src/window.blp:39
+msgid "Output Devices"
+msgstr "Ausgabegeräte"
+
+#: src/window.blp:61
+msgid "Input Devices"
+msgstr "Eingabegeräte"
+
+#: src/window.blp:84
+msgid "Playback"
+msgstr "Wiedergabe"
+
+#: src/window.blp:107
+msgid "Recording"
+msgstr "Aufnahme"
+
+#: src/window.blp:136
+msgid "Enable over-amplification"
+msgstr "Überverstärkung aktivieren"
+
+#: src/window.blp:144
+msgid "About WireControl"
+msgstr "Über WireControl"
+
+#~ msgid "volume control center"
+#~ msgstr "Lautstärkeregler"
