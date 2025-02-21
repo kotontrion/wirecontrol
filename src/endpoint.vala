@@ -12,6 +12,8 @@ namespace Wirecontrol {
         private unowned Gtk.ToggleButton default_toggle;
         [GtkChild]
         private unowned Gtk.ToggleButton lock_toggle;
+        [GtkChild]
+        private unowned Gtk.Box channel_box;
 
         public Endpoint (AstalWp.Endpoint endpoint) {
             Object(endpoint: endpoint);
@@ -23,6 +25,22 @@ namespace Wirecontrol {
             realize.connect(() => {
                 get_root().bind_property("max-vol", volume_adjust, "upper", GLib.BindingFlags.SYNC_CREATE);
             });
+
+            endpoint.notify["channel-volumes"].connect(recreate_channels);
+            recreate_channels();
+        }
+
+        private void recreate_channels() {
+           var widget = channel_box.get_first_child();
+                while(widget != null) {
+                  channel_box.remove(widget);
+                  widget = channel_box.get_first_child();
+                }
+                if(endpoint.channel_volumes == null) return;
+                foreach(var cv in endpoint.channel_volumes) {
+                  var channel = new Wirecontrol.VolumeScale(cv);
+                  channel_box.append(channel);
+                }
         }
 
         [GtkCallback]

@@ -1,0 +1,28 @@
+using Gtk 4.0;
+using AstalWp 0.1;
+
+template $WirecontrolVolumeScale: Gtk.Box {
+  orientation: vertical;
+
+  Gtk.Label {
+    halign: start;
+    label: bind template.channel as <AstalWp.ChannelVolume>.name;
+  }
+
+  Gtk.Box {
+    Gtk.Image {
+      icon-name: bind template.channel as <AstalWp.ChannelVolume>.volume-icon;
+    }
+
+    Gtk.Scale {
+      hexpand: true;
+      adjustment: Gtk.Adjustment volume_adjust {
+        lower: 0;
+        upper: 1;
+      };
+    }
+  }
+}
+
+
+
