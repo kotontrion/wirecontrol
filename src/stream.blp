@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using AstalWp 0.1;
 
-template $WirecontrolEndpoint: Gtk.ListBoxRow {
+template $WirecontrolStream: Gtk.ListBoxRow {
   selectable: false;
   activatable: false;
   child: Gtk.Box {
@@ -19,13 +19,13 @@ template $WirecontrolEndpoint: Gtk.ListBoxRow {
         Gtk.Box {
           orientation: vertical;
           Gtk.Label {
-            label: bind template.endpoint as <AstalWp.Endpoint>.description;
+            label: bind template.stream as <AstalWp.Stream>.description;
             ellipsize: end;
             xalign: 0;
             styles ["heading"]
           }
           Gtk.Label {
-            label: bind template.endpoint as <AstalWp.Endpoint>.name;
+            label: bind template.stream as <AstalWp.Stream>.name;
             ellipsize: end;
             xalign: 0;
             styles ["subtitle"]
@@ -35,6 +35,10 @@ template $WirecontrolEndpoint: Gtk.ListBoxRow {
       [end]
       Gtk.Box {
         spacing: 5;
+        Gtk.DropDown target_endpoint {
+          model: bind template.endpoints;
+          expression: expr item as <AstalWp.Endpoint>.description;
+        }
         Gtk.ToggleButton mute_toggle {
           child: Gtk.Image {
             icon-name: "audio-volume-muted-symbolic";
@@ -47,18 +51,11 @@ template $WirecontrolEndpoint: Gtk.ListBoxRow {
             tooltip-text: _("lock channels");
           };
         }
-        Gtk.ToggleButton default_toggle {
-          halign: end;
-          child: Gtk.Image {
-            icon-name: "object-select-symbolic";
-            tooltip-text: _("set default");
-          };
-        }
       }
     }
     Gtk.Box {
       Gtk.Image {
-        icon-name: bind template.endpoint as <AstalWp.Endpoint>.volume-icon;
+        icon-name: bind template.stream as <AstalWp.Stream>.volume-icon;
       }
       Gtk.Scale {
         hexpand: true;

@@ -42,11 +42,5 @@ namespace Wirecontrol {
                   channel_box.append(channel);
                 }
         }
-
-        [GtkCallback]
-        public bool default_toggle_visible(AstalWp.MediaClass media_class) {
-            return media_class == AstalWp.MediaClass.AUDIO_SPEAKER
-                || media_class == AstalWp.MediaClass.AUDIO_MICROPHONE;
-        }
     }
 }

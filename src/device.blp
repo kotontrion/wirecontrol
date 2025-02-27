@@ -1,0 +1,42 @@
+using Gtk 4.0;
+using AstalWp 0.1;
+
+template $WirecontrolDevice: Gtk.ListBoxRow {
+  selectable: false;
+  activatable: false;
+  child: Gtk.Box {
+    margin-start: 10;
+    margin-end: 10;
+    margin-top: 10;
+    margin-bottom: 10;
+
+    Gtk.CenterBox {
+      hexpand: true;
+      [start]
+      Gtk.Box {
+        spacing: 10;
+
+        Gtk.Image {
+          icon-name: bind template.device as <AstalWp.Device>.icon;
+          use-fallback: true;
+        }
+        Gtk.Label {
+          label: bind template.device as <AstalWp.Device>.description;
+          ellipsize: end;
+          xalign: 0;
+        }
+      }
+      [end]
+      Gtk.Box {
+        spacing: 5;
+        Gtk.DropDown profile {
+          model: bind template.profiles;
+          expression: expr item as <AstalWp.Profile>.description;
+        }
+      }
+    }
+  };
+}
+
+
+
