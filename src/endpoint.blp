@@ -35,6 +35,11 @@ template $WirecontrolEndpoint: Gtk.ListBoxRow {
       [end]
       Gtk.Box {
         spacing: 5;
+        Gtk.DropDown route {
+          model: bind template.routes;
+          expression: expr item as <AstalWp.Route>.description;
+        }
+
         Gtk.ToggleButton mute_toggle {
           child: Gtk.Image {
             icon-name: "audio-volume-muted-symbolic";

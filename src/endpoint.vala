@@ -3,6 +3,7 @@ namespace Wirecontrol {
     public class Endpoint : Gtk.ListBoxRow {
 
         public AstalWp.Endpoint endpoint { get; construct; }
+        public ListStore routes {get; construct; }
 
         [GtkChild]
         private unowned Gtk.Adjustment volume_adjust;
@@ -14,9 +15,11 @@ namespace Wirecontrol {
         private unowned Gtk.ToggleButton lock_toggle;
         [GtkChild]
         private unowned Gtk.Box channel_box;
+        [GtkChild]
+        private unowned Gtk.DropDown route;
 
         public Endpoint (AstalWp.Endpoint endpoint) {
-            Object(endpoint: endpoint);
+            Object(endpoint: endpoint, routes: new ListStore(typeof(AstalWp.Route)));
 
             endpoint.bind_property("volume", volume_adjust, "value", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
             endpoint.bind_property("mute", mute_toggle, "active", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
@@ -28,7 +31,28 @@ namespace Wirecontrol {
 
             endpoint.notify["channel-volumes"].connect(recreate_channels);
             recreate_channels();
+
+            endpoint.routes.foreach((route) => {
+                routes.append(route);
+            });
+            
+            endpoint.notify["active-route"].connect(() => {
+                uint position;
+                routes.find(endpoint.get_active_route(), out position);
+                route.selected = position;
+            });
+
+            uint position;
+            routes.find(endpoint.get_active_route(), out position);
+            route.selected = position;
+            
+            route.notify["selected"].connect(() => {
+                var selected_route = routes.get_item(route.selected) as AstalWp.Route;
+                endpoint.set_active_route(selected_route);
+            });
         }
+
+
 
         private void recreate_channels() {
            var widget = channel_box.get_first_child();
