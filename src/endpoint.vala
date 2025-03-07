@@ -29,7 +29,7 @@ namespace Wirecontrol {
                 get_root().bind_property("max-vol", volume_adjust, "upper", GLib.BindingFlags.SYNC_CREATE);
             });
 
-            endpoint.notify["channel-volumes"].connect(recreate_channels);
+            endpoint.notify["channels"].connect(recreate_channels);
             recreate_channels();
 
             endpoint.routes.foreach((route) => {
@@ -38,17 +38,17 @@ namespace Wirecontrol {
             
             endpoint.notify["active-route"].connect(() => {
                 uint position;
-                routes.find(endpoint.get_active_route(), out position);
+                routes.find(endpoint.get_route(), out position);
                 route.selected = position;
             });
 
             uint position;
-            routes.find(endpoint.get_active_route(), out position);
+            routes.find(endpoint.get_route(), out position);
             route.selected = position;
             
             route.notify["selected"].connect(() => {
                 var selected_route = routes.get_item(route.selected) as AstalWp.Route;
-                endpoint.set_active_route(selected_route);
+                endpoint.set_route(selected_route);
             });
         }
 
@@ -60,8 +60,8 @@ namespace Wirecontrol {
                   channel_box.remove(widget);
                   widget = channel_box.get_first_child();
                 }
-                if(endpoint.channel_volumes == null) return;
-                foreach(var cv in endpoint.channel_volumes) {
+                if(endpoint.channels == null) return;
+                foreach(var cv in endpoint.channels) {
                   var channel = new Wirecontrol.VolumeScale(cv);
                   channel_box.append(channel);
                 }

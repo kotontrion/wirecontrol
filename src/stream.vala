@@ -42,7 +42,7 @@ namespace Wirecontrol {
                 get_root().bind_property("max-vol", volume_adjust, "upper", GLib.BindingFlags.SYNC_CREATE);
             });
           
-            stream.notify["channel-volumes"].connect(recreate_channels);
+            stream.notify["channels"].connect(recreate_channels);
             recreate_channels();
         }
 
@@ -52,8 +52,8 @@ namespace Wirecontrol {
                   channel_box.remove(widget);
                   widget = channel_box.get_first_child();
                 }
-                if(stream.channel_volumes == null) return;
-                foreach(var cv in stream.channel_volumes) {
+                if(stream.channels == null) return;
+                foreach(var cv in stream.channels) {
                   var channel = new Wirecontrol.VolumeScale(cv);
                   channel_box.append(channel);
                 }

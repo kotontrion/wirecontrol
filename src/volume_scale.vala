@@ -2,12 +2,12 @@ namespace Wirecontrol {
     [GtkTemplate (ui = "/com/github/kotontrion/wirecontrol/volume_scale.ui")]
     public class VolumeScale : Gtk.Box {
 
-        public AstalWp.ChannelVolume channel { get; construct; }
+        public AstalWp.Channel channel { get; construct; }
 
         [GtkChild]
         private unowned Gtk.Adjustment volume_adjust;
 
-        public VolumeScale (AstalWp.ChannelVolume channel) {
+        public VolumeScale (AstalWp.Channel channel) {
             Object(channel: channel);
 
             channel.bind_property("volume", volume_adjust, "value", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);

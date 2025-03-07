@@ -6,12 +6,12 @@ template $WirecontrolVolumeScale: Gtk.Box {
 
   Gtk.Label {
     halign: start;
-    label: bind template.channel as <AstalWp.ChannelVolume>.name;
+    label: bind template.channel as <AstalWp.Channel>.name;
   }
 
   Gtk.Box {
     Gtk.Image {
-      icon-name: bind template.channel as <AstalWp.ChannelVolume>.volume-icon;
+      icon-name: bind template.channel as <AstalWp.Channel>.volume-icon;
     }
 
     Gtk.Scale {
