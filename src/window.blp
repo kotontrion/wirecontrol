@@ -124,6 +124,30 @@ template $WirecontrolWindow: Adw.ApplicationWindow {
           }
         };
       }
+
+      Adw.ViewStackPage devices {
+        name: "devices";
+        title: _("Devices");
+        icon-name: "audio-card-symbolic";
+        use-underline: true;
+
+        child: Gtk.ScrolledWindow {
+          vexpand: true;
+
+          Gtk.ListBox device_list {
+            margin-start: 10;
+            margin-end: 10;
+            margin-top: 10;
+            margin-bottom: 10;
+            hexpand: true;
+            valign: start;
+            selection-mode: none;
+            show-separators: true;
+            styles ["boxed-list"]
+          }
+        };
+      }
+
     }
   };
 

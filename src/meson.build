@@ -3,6 +3,9 @@ wirecontrol_sources = [
   'application.vala',
   'window.vala',
   'endpoint.vala',
+  'stream.vala',
+  'device.vala',
+  'volume_scale.vala'
 ]
 
 wirecontrol_deps = [
@@ -16,6 +19,9 @@ blueprints = custom_target('blueprint-compiler',
   input: files(
     'window.blp',
     'endpoint.blp',
+    'device.blp',
+    'volume_scale.blp',
+    'stream.blp'
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],

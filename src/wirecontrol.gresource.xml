@@ -3,5 +3,8 @@
   <gresource prefix="/com/github/kotontrion/wirecontrol">
     <file preprocess="xml-stripblanks">window.ui</file>
     <file preprocess="xml-stripblanks">endpoint.ui</file>
+    <file preprocess="xml-stripblanks">stream.ui</file>
+    <file preprocess="xml-stripblanks">device.ui</file>
+    <file preprocess="xml-stripblanks">volume_scale.ui</file>
   </gresource>
 </gresources>
