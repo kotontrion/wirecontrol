@@ -9,12 +9,7 @@
 
   outputs = { self, nixpkgs, astal }: let
     system = "x86_64-linux";
-    overlays = [
-      (import ./blueprint-compiler-0.16.nix)
-    ];
-    pkgs = import nixpkgs {
-      inherit system overlays;
-    };
+    pkgs = nixpkgs.legacyPackages.${system};
   in {
     packages.${system}.default = pkgs.stdenv.mkDerivation {
       name = "wirecontrol";
@@ -27,7 +22,7 @@
         vala
         gobject-introspection
         desktop-file-utils
-        pkgs.blueprint-compiler
+        blueprint-compiler
       ];
 
       buildInputs = with pkgs; [
